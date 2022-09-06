@@ -2,7 +2,10 @@ load("//toolchain/wine:rules.bzl", "wine_binary")
 
 wine_binary(
     name = "cmd",
-    args = ["cmd"],
+    args = [
+        "cmd",
+        "-cmd /K PROMPT $$G",
+    ],
     env = {
         "WINEPATH": ".",
         "WINEDBG": "-all",
