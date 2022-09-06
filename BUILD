@@ -1,5 +1,5 @@
 alias(
     name = "wine",
-    actual = "@wine//executable/darwin",
+    actual = "@wine_rules//executable/darwin",
     visibility = ["//visibility:public"],
 )
