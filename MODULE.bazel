@@ -1,0 +1,5 @@
+
+module(
+    name = "bazel-wine",
+    version = "1.0",
+)
