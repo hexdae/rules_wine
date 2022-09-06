@@ -11,7 +11,7 @@ def wine_binary(name, data = [], args = [], **kwargs):
     """
     native.sh_binary(
         name = name,
-        srcs = ["//executable:sh_wrapper"],
+        srcs = ["@wine//executable:sh_wrapper"],
         args = ["$(location @wine)"] + args,
         data = ["@wine"] + data,
         **kwargs
