@@ -6,10 +6,3 @@ native_binary(
     out = "wine",
     visibility = ["//visibility:public"],
 )
-
-native_binary(
-    name = "quiet",
-    src = "Wine Crossover.app/Contents/Resources/wine/bin/wine",
-    out = "wine",
-    visibility = ["//visibility:public"],
-)
