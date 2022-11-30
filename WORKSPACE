@@ -17,4 +17,4 @@ bazel_skylib_workspace()
 
 load("@wine_rules//:deps.bzl", "wine_deps")
 
-wine_deps()
+wine_deps("21.0.0")
