@@ -13,6 +13,6 @@ def wine_binary(name, data = [], args = [], **kwargs):
         name = name,
         srcs = ["@rules_wine//executable:sh_wrapper"],
         args = ["$(location @rules_wine//:wine)"] + args,
-        data = ["@rules_wine//:wine"] + data,
+        data = ["@rules_wine//:wine" ] + data,
         **kwargs
     )

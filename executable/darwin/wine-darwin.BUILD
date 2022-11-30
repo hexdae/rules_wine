@@ -1,8 +1,15 @@
-load("@bazel_skylib//rules:native_binary.bzl", "native_binary")
 
-native_binary(
+genrule(
+    name = "wrap",
+    srcs = ["Contents/Resources/wine/bin/wine"],
+    outs = ["wine.sh"],
+    cmd = "echo '$(location Contents/Resources/wine/bin/wine) $$@' > $@",
+    executable = True,
+)
+
+sh_binary(
     name = "wine",
-    src = "Wine Crossover.app/Contents/Resources/wine/bin/wine",
-    out = "wine",
+    srcs = ["wine.sh"],
+    data = glob(["**"]),
     visibility = ["//visibility:public"],
 )
