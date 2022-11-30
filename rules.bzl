@@ -1,5 +1,11 @@
 """Wine rules/macros for executing windows program on unix"""
 
+executables = [
+    "wine",
+    "wine64",
+    "winepath",
+]
+
 def wine_binary(name, data = [], args = [], **kwargs):
     """Wrap an executable and run it using wine
 
