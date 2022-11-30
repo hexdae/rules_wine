@@ -1,4 +1,4 @@
-workspace(name = "wine_rules")
+workspace(name = "rules_wine")
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
@@ -15,6 +15,6 @@ load("@bazel_skylib//:workspace.bzl", "bazel_skylib_workspace")
 
 bazel_skylib_workspace()
 
-load("@wine_rules//:deps.bzl", "wine_deps")
+load("@rules_wine//:deps.bzl", "wine_deps")
 
 wine_deps("21.0.0")

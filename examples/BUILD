@@ -1,4 +1,4 @@
-load("@wine_rules//:rules.bzl", "wine_binary")
+load("@rules_wine//:rules.bzl", "wine_binary")
 
 wine_binary(
     name = "cmd",

@@ -18,7 +18,7 @@ def wine_deps(version, sha256 = None):
 
     http_archive(
         name = "wine-darwin",
-        build_file = "@wine_rules//executable/darwin:wine-darwin.BUILD",
+        build_file = "@rules_wine//executable/darwin:wine-darwin.BUILD",
         sha256 = sha256,
         url = "https://github.com/Gcenx/winecx/releases/download/crossover-wine-{version}/wine-crossover-{version}-osx64.tar.xz".format(version = version),
     )
