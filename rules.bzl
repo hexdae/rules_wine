@@ -1,11 +1,25 @@
 """Wine rules/macros for executing windows program on unix"""
 
 executables = [
+    "msidb",
+    "msiexec",
+    "notepad",
+    "regedit",
+    "regsvr32",
     "wine",
+    "wine-preloader",
     "wine64",
-    "winepath",
+    "wine64-preloader",
+    "wineboot",
+    "winecfg",
     "wineconsole",
+    "winedbg",
+    "winefile",
+    "winemine",
+    "winepath",
+    "wineserver",
 ]
+
 
 def wine_binary(name, data = [], args = [], wine_exe = "wine", **kwargs):
     """Wrap an executable and run it using wine
@@ -20,7 +34,7 @@ def wine_binary(name, data = [], args = [], wine_exe = "wine", **kwargs):
     native.sh_binary(
         name = name,
         srcs = ["@rules_wine//executable:sh_wrapper"],
-        args = ["$(location @rules_wine//:{exe})".format(exe=wine_exe)] + args,
-        data = ["@rules_wine//:{exe}".format(exe=exe) for exe in executables] + data,
+        args = ["$(location @rules_wine//:{exe})".format(exe = wine_exe)] + args,
+        data = ["@rules_wine//:{exe}".format(exe = exe) for exe in executables] + data,
         **kwargs
     )
