@@ -1,6 +1,5 @@
 load("@rules_wine//:rules.bzl", "executables")
 
-
 [
     alias(
         name = "{exe}".format(exe = exe),
