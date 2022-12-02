@@ -10,6 +10,7 @@ wine_binary(
         "WINEPATH": ".",
         "WINEDBG": "-all",
     },
+    wine_exe = "@wine-darwin//:wineconsole",
 )
 
 wine_binary(
@@ -19,4 +20,5 @@ wine_binary(
         "WINEPATH": ".",
         "WINEDBG": "-all",
     },
+    wine_exe = "@wine-darwin//:wine64",
 )

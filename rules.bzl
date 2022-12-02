@@ -1,27 +1,28 @@
 """Wine rules/macros for executing windows program on unix"""
 
-executables = [
-    "msidb",
-    "msiexec",
-    "notepad",
-    "regedit",
-    "regsvr32",
-    "wine",
-    "wine-preloader",
-    "wine64",
-    "wine64-preloader",
-    "wineboot",
-    "winecfg",
-    "wineconsole",
-    "winedbg",
-    "winefile",
-    "winemine",
-    "winepath",
-    "wineserver",
-]
+
+def wine_install(name, install, wine_exe, **kwargs):
+    """Use this rule to install components into wine
+
+    Args:
+        name: name
+        data: data labels for the binary
+        install: lablel to install
+        wine_exe: label of the wine_exe
+        args: arguments supplied to the binary
+        **kwargs: same as sh_binary
+    """
+    native.sh_binary(
+        name = name,
+        srcs = ["@rules_wine//executable:sh_wrapper"],
+        args = ["$(location {exe}) $(location {install})".format(exe = wine_exe, install=install)],
+        data = [wine_exe] + [install],
+        **kwargs
+    )
 
 
-def wine_binary(name, data = [], args = [], wine_exe = "wine", **kwargs):
+
+def wine_binary(name, wine_exe, data = [], args = [], **kwargs):
     """Wrap an executable and run it using wine
 
     Args:
@@ -34,7 +35,7 @@ def wine_binary(name, data = [], args = [], wine_exe = "wine", **kwargs):
     native.sh_binary(
         name = name,
         srcs = ["@rules_wine//executable:sh_wrapper"],
-        args = ["$(location @rules_wine//:{exe})".format(exe = wine_exe)] + args,
-        data = ["@rules_wine//:{exe}".format(exe = exe) for exe in executables] + data,
+        args = ["$(location {exe})".format(exe = wine_exe)] + args,
+        data = [wine_exe] + data,
         **kwargs
     )
