@@ -13,12 +13,13 @@ This can be achieved using the `env` parameter in the `wine` rules
 
 ```python
 wine_binary(
-    name = "notepad",
-    args = ["notepad"],
+    name = "exe",
+    args = ["$(location :executable)"],
     env = {
-        "WINEPATH": ".",
+        "WINEPATH": "$(location :executable)/..;C:\\some\\win\\path.",
         "WINEDBG": "-all",
     },
+    data = [":executable"]
     wine_exe = "@wine-darwin//:wine64",
 )
 ```
