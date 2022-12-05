@@ -4,20 +4,9 @@ build_file= """
 wine_binaries = {binaries}
 
 [
-    genrule(
-        name = "wrap-{{}}".format(exe),
-        srcs = glob(["{path}/**"]),
-        outs = ["{{}}.sh".format(exe)],
-        cmd = "echo '$(location {path}/{{}}) $$@' > $@".format(exe),
-        executable = True,
-    )
-    for exe in wine_binaries
-]
-
-[
     sh_binary(
         name = "{{}}".format(exe),
-        srcs = ["{{}}.sh".format(exe)],
+        srcs = ["{path}/{{}}".format(exe)],
         data = glob(["**"]),
         visibility = ["//visibility:public"],
     )
